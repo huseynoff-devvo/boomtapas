@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/png" href="https://res.cloudinary.com/dxymbsg0p/image/upload/v1757092810/vecteezy_cute-lemon-cartoon_47434226_jgnaor.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Limon.az | Gizlilik Siyasəti</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, sans-serif;
+      background: #0d1117;
+      color: #e6edf3;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Loading ekranı */
+    #loading {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: #0d1117;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      animation: fadeOut 0.5s ease forwards;
+      animation-delay: 1s; /* 1 saniyə göstəriləcək */
+    }
+
+    .lemon {
+      position: relative;
+      width: 120px;
+      height: 120px;
+      background: #f6d743;
+      border-radius: 50% 50% 45% 55% / 55% 45% 55% 45%;
+      box-shadow: 0 0 25px rgba(246, 215, 67, 0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: bounce 1s infinite alternate;
+    }
+
+    /* Gözlər */
+    .eye {
+      position: absolute;
+      width: 12px; height: 12px;
+      background: #0d1117;
+      border-radius: 50%;
+      top: 40px;
+    }
+    .eye.left { left: 35px; }
+    .eye.right { right: 35px; }
+
+    /* Ağız */
+    .mouth {
+      position: absolute;
+      bottom: 35px;
+      width: 40px;
+      height: 20px;
+      border-bottom: 4px solid #0d1117;
+      border-radius: 0 0 50% 50%;
+    }
+
+    /* Əl */
+    .hand {
+      position: absolute;
+      right: -25px;
+      top: 50px;
+      width: 25px; height: 25px;
+      background: #f6d743;
+      border-radius: 50%;
+      transform-origin: left center;
+      animation: wave 1s infinite;
+    }
+
+    #loading p {
+      margin-top: 20px;
+      font-size: 1.2rem;
+      color: #00ff84;
+      animation: fadeInText 0.5s ease;
+    }
+
+    @keyframes bounce {
+      from { transform: translateY(0); }
+      to { transform: translateY(-15px); }
+    }
+    @keyframes wave {
+      0% { transform: rotate(0deg); }
+      50% { transform: rotate(30deg); }
+      100% { transform: rotate(0deg); }
+    }
+    @keyframes fadeInText {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @keyframes fadeOut {
+      to { opacity: 0; visibility: hidden; }
+    }
+
+    /* Əsas məzmun */
+    #content {
+      max-width: 900px;
+      margin: auto;
+      /* background: #161b22; */
+      padding: 30px;
+      border-radius: 12px;
+      /* box-shadow: 0 0 20px rgba(0,255,132,0.2);  */
+      margin-top: -50px;
+      opacity: 0;
+      animation: appear 0.8s ease forwards;
+      animation-delay: 1s; /* 1 saniyə sonra açılacaq */
+    }
+
+    header {
+      text-align: center;
+      padding: 20px;
+    }
+    header h1 {
+      font-size: 2rem;
+      color: #00ff84;
+    }
+    header p {
+      font-size: 1rem;
+      color: #9ca3af;
+    }
+
+    h2 {
+      color: #00ff84;
+      margin-top: 25px;
+      font-size: 1.2rem;
+    }
+    p {
+      margin-bottom: 12px;
+      font-size: 0.95rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 0.85rem;
+      color: #6b7280;
+    }
+
+    @keyframes appear {
+      to { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Loading ekranı -->
+  <div id="loading">
+    <div class="lemon">
+      <div class="eye left"></div>
+      <div class="eye right"></div>
+      <div class="mouth"></div>
+      <div class="hand"></div>
+    </div>
+    <!-- <p>Limon sizi salamlayır 🍋</p> -->
+  </div>
+
+  <!-- Əsas kontent -->
+  <div id="content">
+    <header>
+      <h1>limon.az</h1>
+      <p>Azərbaycanın milli sosial media platforması</p>
+    </header>
+
+    <section>
+      <h2>Giriş</h2>
+      <p>Limon.az istifadəçilərinin şəxsi məlumatlarının təhlükəsizliyinə xüsusi önəm verir. Bu gizlilik siyasəti sizin məlumatlarınızın necə toplandığını, saxlanıldığını və istifadə edildiyini izah edir.</p>
+
+      <h2>Toplanan Məlumatlar</h2>
+      <p>• Qeydiyyat zamanı daxil etdiyiniz ad, e-poçt ünvanı və digər məlumatlar.</p>
+      <p>• Paylaşımlarınız, şərhləriniz və fəaliyyət tarixçəniz.</p>
+      <p>• Təhlükəsizlik məqsədilə IP ünvan və cihaz məlumatları.</p>
+
+      <h2>Məlumatlardan İstifadə</h2>
+      <p>Toplanan məlumatlar platformanı inkişaf etdirmək, təhlükəsizliyi təmin etmək və sizə daha yaxşı xidmət göstərmək üçün istifadə olunur.</p>
+
+      <h2>Məlumatların Paylaşılması</h2>
+      <p>Sizin şəxsi məlumatlarınız üçüncü tərəflərlə paylaşılmır. Yalnız hüquqi öhdəliklər və qanunvericilik tələb etdikdə aidiyyəti dövlət orqanlarına təqdim edilə bilər.</p>
+
+      <h2>Təhlükəsizlik</h2>
+      <p>Məlumatlarınız müasir təhlükəsizlik sistemləri ilə qorunur. Lakin internet üzərindən məlumat ötürülməsinin 100% təhlükəsiz olduğunu zəmanətlə təmin etmək mümkün deyil.</p>
+
+      <h2>Sizin Hüquqlarınız</h2>
+      <p>İstədiyiniz zaman hesabınızı silmək və məlumatlarınızın platformadan tam silinməsini tələb etmək hüququna maliksiniz.</p>
+
+      <h2>Əlaqə</h2>
+      <p>Sual və ya təklifləriniz üçün bizimlə <b>support@limon.az</b> ünvanı vasitəsilə əlaqə saxlaya bilərsiniz.</p>
+    </section>
+  </div>
+
+  <footer>
+    © 2025 Limon.az – Azərbaycanın sosial media platforması
+  </footer>
+</body>
+</html>
