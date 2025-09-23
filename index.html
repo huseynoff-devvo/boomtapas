@@ -5,126 +5,81 @@
     <link rel="icon" type="image/png" href="https://res.cloudinary.com/dxymbsg0p/image/upload/v1757092810/vecteezy_cute-lemon-cartoon_47434226_jgnaor.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Limon.az | Gizlilik Siyasəti</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* General styles and fonts */
+        * {
+            user-select: none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+        }
+
+        img {
+            pointer-events: none;
+            user-drag: none;
+            -webkit-user-drag: none;
+        }
+
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #0A0A0A;
-            color: #E0E0E0;
+            margin: 0;
+            font-family: "Segoe UI", Tahoma, sans-serif;
+            background: #101010;
+            color: #e6edf3;
+            line-height: 1.6;
             overflow-x: hidden;
         }
 
-        /* Loading screen and animations */
         #loading {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: #0A0A0A;
+            background: #101010;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             z-index: 9999;
-            transition: opacity 0.5s ease-out;
-            animation-delay: 2s; /* Delay before fading out */
+            animation: fadeOut 0.5s ease forwards;
+            animation-delay: 1s;
         }
 
-        .lemon-container {
+        .lemon {
             position: relative;
-            width: 180px;
-            height: 180px;
+            width: 120px;
+            height: 120px;
+            background: #f6d743;
+            border-radius: 50% 50% 45% 55% / 55% 45% 55% 45%;
+            box-shadow: 0 0 25px rgba(246, 215, 67, 0.6);
             display: flex;
             align-items: center;
             justify-content: center;
-        }
-
-        .lemon-main {
-            position: relative;
-            width: 150px;
-            height: 150px;
-            background: linear-gradient(135deg, #FFD700 0%, #FFD700 40%, #FFC107 100%);
-            border-radius: 50% 50% 45% 55% / 55% 45% 55% 45%;
-            box-shadow: 
-                inset 0 0 10px rgba(0,0,0,0.1), /* Inner shadow */
-                0 15px 30px rgba(255,215,0,0.3), /* Outer glow */
-                0 4px 6px rgba(0,0,0,0.2); /* Drop shadow */
-            animation: bounce 1.5s infinite ease-in-out alternate;
-        }
-
-        .lemon-main::before {
-            content: '';
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            width: calc(100% - 20px);
-            height: calc(100% - 20px);
-            background: rgba(255,255,255,0.2);
-            border-radius: 50%;
-            filter: blur(5px);
-            opacity: 0.8;
-            z-index: 1;
-        }
-
-        .stem {
-            position: absolute;
-            top: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 10px;
-            height: 25px;
-            background-color: #6B8E23;
-            border-radius: 5px 5px 0 0;
-            z-index: 2;
-        }
-
-        .leaf {
-            position: absolute;
-            width: 40px;
-            height: 20px;
-            background: #90EE90;
-            border-radius: 50% 0 50% 0;
-            transform: rotate(25deg);
-            left: 55%;
-            top: -10px;
-            z-index: 2;
-            animation: leafPulse 2s infinite ease-in-out;
-            box-shadow: 0 0 5px rgba(0,0,0,0.2);
-        }
-
-        .face {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 3;
+            animation: bounce 1s infinite alternate;
         }
 
         .eye {
+            position: absolute;
             width: 12px;
             height: 12px;
             background: #101010;
             border-radius: 50%;
-            position: absolute;
-            top: -20px;
-            animation: blink 3s infinite;
+            top: 40px;
         }
-        .eye.left { left: -20px; }
-        .eye.right { right: -20px; }
+
+        .eye.left {
+            left: 35px;
+        }
+
+        .eye.right {
+            right: 35px;
+        }
 
         .mouth {
             position: absolute;
+            bottom: 35px;
             width: 40px;
             height: 20px;
             border-bottom: 4px solid #101010;
             border-radius: 0 0 50% 50%;
-            top: 10px;
-            left: -20px;
         }
 
         .hand {
@@ -133,47 +88,60 @@
             top: 50px;
             width: 25px;
             height: 25px;
-            background: #FFD700;
+            background: #f6d743;
             border-radius: 50%;
             transform-origin: left center;
             animation: wave 1s infinite;
         }
 
         #loading p {
-            margin-top: 30px;
-            font-size: 1.5rem;
-            color: #A7FF83;
+            margin-top: 20px;
+            font-size: 1.2rem;
+            color: #00ff84;
             animation: fadeInText 0.5s ease;
         }
 
-        /* Keyframe animations */
         @keyframes bounce {
-            0% { transform: translateY(0); }
-            100% { transform: translateY(-15px); }
-        }
-        @keyframes wave {
-            0% { transform: rotate(0deg); }
-            50% { transform: rotate(30deg); }
-            100% { transform: rotate(0deg); }
-        }
-        @keyframes leafPulse {
-            0%, 100% { transform: rotate(25deg) scale(1); }
-            50% { transform: rotate(30deg) scale(1.1); }
-        }
-        @keyframes blink {
-            0%, 40%, 100% { transform: scaleY(1); }
-            45% { transform: scaleY(0.1); }
-            50% { transform: scaleY(1); }
-        }
-        @keyframes fadeOut {
-            to { opacity: 0; visibility: hidden; }
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                transform: translateY(0);
+            }
+
+            to {
+                transform: translateY(-15px);
+            }
         }
 
-        /* Main content styles */
+        @keyframes wave {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            50% {
+                transform: rotate(30deg);
+            }
+
+            100% {
+                transform: rotate(0deg);
+            }
+        }
+
+        @keyframes fadeInText {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeOut {
+            to {
+                opacity: 0;
+                visibility: hidden;
+            }
+        }
+
         #content {
             max-width: 900px;
             margin: auto;
@@ -181,108 +149,86 @@
             border-radius: 12px;
             margin-top: -50px;
             opacity: 0;
-            animation: fadeIn 0.8s ease forwards;
+            animation: appear 0.8s ease forwards;
             animation-delay: 1s;
         }
-        header { text-align: center; padding: 20px; }
-        header h1 { font-size: 2.5rem; color: #A7FF83; }
-        header p { font-size: 1.1rem; color: #9ca3af; }
-        h2 { color: #A7FF83; margin-top: 25px; font-size: 1.5rem; }
-        p { margin-bottom: 12px; font-size: 1rem; line-height: 1.8; }
-        .email-link {
-            color: #A7FF83;
-            text-decoration: none;
-            font-weight: bold;
-            transition: color 0.3s ease;
+
+        header {
+            text-align: center;
+            padding: 20px;
         }
-        .email-link:hover {
-            color: #6B8E23;
+
+        header h1 {
+            font-size: 2rem;
+            color: #00ff84;
         }
-        footer { text-align: center; padding: 20px; font-size: 0.85rem; color: #6b7280; }
+
+        header p {
+            font-size: 1rem;
+            color: #9ca3af;
+        }
+
+        h2 {
+            color: #00ff84;
+            margin-top: 25px;
+            font-size: 1.2rem;
+        }
+
+        p {
+            margin-bottom: 12px;
+            font-size: 0.95rem;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 0.85rem;
+            color: #6b7280;
+        }
+
+        @keyframes appear {
+            to {
+                opacity: 1;
+            }
+        }
     </style>
 </head>
-<body class="bg-gray-900 text-gray-300 font-inter min-h-screen">
-    <!-- Loading screen -->
+
+<body>
     <div id="loading">
-        <div class="lemon-container">
-            <div class="lemon-main">
-                <div class="face">
-                    <div class="eye left"></div>
-                    <div class="eye right"></div>
-                    <div class="mouth"></div>
-                </div>
-                <div class="hand"></div>
-            </div>
-            <div class="stem"></div>
-            <div class="leaf"></div>
+        <div class="lemon">
+            <div class="eye left"></div>
+            <div class="eye right"></div>
+            <div class="mouth"></div>
+            <div class="hand"></div>
         </div>
     </div>
-
-    <!-- Main content -->
-    <div id="content" class="container mx-auto max-w-4xl px-4 py-12 opacity-0">
-        <header class="text-center mb-12 animate-fadeIn" style="animation-delay: 1.7s;">
-            <h1 class="text-4xl sm:text-5xl font-extrabold text-lime-400 mb-2">limon.az</h1>
-            <p class="text-xl text-gray-400">Azərbaycanın milli sosial media platforması</p>
+    <div id="content">
+        <header>
+            <h1>limon.az</h1>
+            <p>Azərbaycanın milli sosial media platforması</p>
         </header>
-
-        <section class="space-y-8">
-            <div class="bg-gray-800 p-8 rounded-2xl shadow-xl transition-transform duration-300 hover:scale-105 animate-fadeIn" style="animation-delay: 2s;">
-                <h2 class="text-2xl font-bold text-lime-400 mb-4">Giriş</h2>
-                <p>Limon.az istifadəçilərinin şəxsi məlumatlarının təhlükəsizliyinə xüsusi önəm verir. Bu gizlilik siyasəti sizin məlumatlarınızın necə toplandığını, saxlandığını və istifadə edildiyini izah edir.</p>
-            </div>
-
-            <div class="bg-gray-800 p-8 rounded-2xl shadow-xl transition-transform duration-300 hover:scale-105 animate-fadeIn" style="animation-delay: 2.3s;">
-                <h2 class="text-2xl font-bold text-lime-400 mb-4">Toplanan Məlumatlar</h2>
-                <p>• Qeydiyyat zamanı daxil etdiyiniz ad, istifadəçi adı və digər məlumatlar.</p>
-                <p>• Paylaşımlarınız, şərhləriniz və fəaliyyət tarixçəniz.</p>
-                <p>• Təhlükəsizlik məqsədilə IP ünvan və cihaz məlumatları.</p>
-            </div>
-
-            <div class="bg-gray-800 p-8 rounded-2xl shadow-xl transition-transform duration-300 hover:scale-105 animate-fadeIn" style="animation-delay: 2.6s;">
-                <h2 class="text-2xl font-bold text-lime-400 mb-4">Məlumatlardan İstifadə</h2>
-                <p>Toplanan məlumatlar platformanı inkişaf etdirmək, təhlükəsizliyi təmin etmək və sizə daha yaxşı xidmət göstərmək üçün istifadə olunur.</p>
-            </div>
-            
-            <div class="bg-gray-800 p-8 rounded-2xl shadow-xl transition-transform duration-300 hover:scale-105 animate-fadeIn" style="animation-delay: 2.9s;">
-                <h2 class="text-2xl font-bold text-lime-400 mb-4">Məlumatların Paylaşılması</h2>
-                <p>Sizin şəxsi məlumatlarınız üçüncü tərəflərlə paylaşılmır. Yalnız hüquqi öhdəliklər və qanunvericilik tələb etdikdə aidiyyəti dövlət orqanlarına təqdim edilə bilər.</p>
-            </div>
-            
-            <div class="bg-gray-800 p-8 rounded-2xl shadow-xl transition-transform duration-300 hover:scale-105 animate-fadeIn" style="animation-delay: 3.2s;">
-                <h2 class="text-2xl font-bold text-lime-400 mb-4">Təhlükəsizlik</h2>
-                <p>Məlumatlarınız müasir təhlükəsizlik sistemləri ilə qorunur. Lakin internet üzərindən məlumat ötürülməsinin 100% təhlükəsiz olduğunu zəmanətlə təmin etmək mümkün deyil.</p>
-            </div>
-
-            <div class="bg-gray-800 p-8 rounded-2xl shadow-xl transition-transform duration-300 hover:scale-105 animate-fadeIn" style="animation-delay: 3.5s;">
-                <h2 class="text-2xl font-bold text-lime-400 mb-4">Sizin Hüquqlarınız</h2>
-                <p>İstədiyiniz zaman hesabınızı silmək və məlumatlarınızın platformadan tam silinməsini tələb etmək hüququna maliksiniz.</p>
-            </div>
-
-            <div class="bg-gray-800 p-8 rounded-2xl shadow-xl transition-transform duration-300 hover:scale-105 animate-fadeIn" style="animation-delay: 3.8s;">
-                <h2 class="text-2xl font-bold text-lime-400 mb-4">Əlaqə</h2>
-                <p>Sual və ya təklifləriniz üçün bizimlə <a href="mailto:support@limon.az" class="email-link">support@limon.az</a> və ya <a href="mailto:limon.az.team@gmail.com" class="email-link">limon.az.team@gmail.com</a> ünvanı vasitəsilə əlaqə saxlaya bilərsiniz.</p>
-            </div>
+        <section>
+            <h2>Giriş</h2>
+            <p>Limon.az istifadəçilərinin şəxsi məlumatlarının təhlükəsizliyinə xüsusi önəm verir. Bu gizlilik siyasəti sizin məlumatlarınızın necə toplandığını, saxlanıldığını və istifadə edildiyini izah edir.</p>
+            <h2>Toplanan Məlumatlar</h2>
+            <p>• Qeydiyyat zamanı daxil etdiyiniz ad, istifadəçi adı və digər məlumatlar.</p>
+            <p>• Paylaşımlarınız, şərhləriniz və fəaliyyət tarixçəniz.</p>
+            <p>• Təhlükəsizlik məqsədilə IP ünvan və cihaz məlumatları.</p>
+            <h2>Məlumatlardan İstifadə</h2>
+            <p>Toplanan məlumatlar platformanı inkişaf etdirmək, təhlükəsizliyi təmin etmək və sizə daha yaxşı xidmət göstərmək üçün istifadə olunur.</p>
+            <h2>Məlumatların Paylaşılması</h2>
+            <p>Sizin şəxsi məlumatlarınız üçüncü tərəflərlə paylaşılmır. Yalnız hüquqi öhdəliklər və qanunvericilik tələb etdikdə aidiyyəti dövlət orqanlarına təqdim edilə bilər.</p>
+            <h2>Təhlükəsizlik</h2>
+            <p>Məlumatlarınız müasir təhlükəsizlik sistemləri ilə qorunur. Lakin internet üzərindən məlumat ötürülməsinin 100% təhlükəsiz olduğunu zəmanətlə təmin etmək mümkün deyil.</p>
+            <h2>Sizin Hüquqlarınız</h2>
+            <p>İstədiyiniz zaman hesabınızı silmək və məlumatlarınızın platformadan tam silinməsini tələb etmək hüququna maliksiniz.</p>
+            <h2>Əlaqə</h2>
+            <p>Sual və ya təklifləriniz üçün bizimlə <b>support@limon.az</b> və ya <b>limon.az.team@gmail.com</b> ünvanı vasitəsilə əlaqə saxlaya bilərsiniz.</p>
         </section>
-
-        <footer class="mt-12 text-center text-gray-500 text-sm animate-fadeIn" style="animation-delay: 4.1s;">
-            &copy; 2025 Limon.az – Azərbaycanın sosial media platforması
-        </footer>
     </div>
-
-    <script>
-        // JavaScript to hide the loading screen after a delay
-        window.addEventListener('load', () => {
-            const loadingScreen = document.getElementById('loading');
-            const content = document.getElementById('content');
-            
-            setTimeout(() => {
-                loadingScreen.style.opacity = '0';
-                setTimeout(() => {
-                    loadingScreen.style.display = 'none';
-                    content.style.opacity = '1';
-                }, 500); // Wait for fade-out animation
-            }, 1500); // 1.5 seconds delay
-        });
-    </script>
+    <footer>
+        © 2025 Limon.az – Azərbaycanın sosial media platforması
+    </footer>
 </body>
 </html>
